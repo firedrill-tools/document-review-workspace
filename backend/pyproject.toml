@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "document-review-backend"
+version = "0.1.0"
+description = "CopilotKit document review workspace with approval-gated edits"
+requires-python = ">=3.12"
+dependencies = ["langchain==1.4.6", "langchain-anthropic==1.7.6", "copilotkit==0.1.96", "ag-ui-langgraph==0.0.47", "fastapi==0.143.2", "uvicorn==0.54.0"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "httpx>=0.28,<1"]
+
+[project.scripts]
+document-review-api = "document_review.api:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/document_review"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
