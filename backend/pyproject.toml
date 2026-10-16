@@ -7,7 +7,7 @@ name = "document-review-backend"
 version = "0.1.0"
 description = "CopilotKit document review workspace with approval-gated edits"
 requires-python = ">=3.12"
-dependencies = ["langchain==1.4.6", "langchain-anthropic==1.7.6", "copilotkit==0.1.96", "ag-ui-langgraph==0.0.47", "fastapi==0.143.2", "uvicorn==0.54.0"]
+dependencies = ["langchain==1.4.6", "langchain-core==1.6.10", "langchain-anthropic==1.7.6", "anthropic==1.14.0", "httpx2==2.13.1", "langgraph==1.2.15", "langsmith==0.14.9", "pydantic==2.14.1", "copilotkit==0.1.96", "ag-ui-langgraph==0.0.47", "fastapi==0.143.2", "uvicorn==0.54.0"]
 
 [project.optional-dependencies]
 test = ["pytest>=8,<10", "httpx>=0.28,<1"]

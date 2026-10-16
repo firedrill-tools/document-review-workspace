@@ -1,7 +1,7 @@
 "use client";
 
-import { CopilotChat } from "@copilotkit/react-core/v2";
-import { useCallback, useEffect, useState } from "react";
+import { ReviewChat } from "./review-chat";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Section = { id: string; heading: string; text: string; revision: number; locked: boolean };
 type Document = { id: string; title: string; revision: number; sections: Section[] };
@@ -19,32 +19,46 @@ export default function Page() {
   const [selectedId, setSelectedId] = useState("doc-101");
   const [detail, setDetail] = useState<Detail | null>(null);
   const [actor, setActor] = useState("");
-  const [error, setError] = useState("");
+  const [loadError, setLoadError] = useState("");
+  const [decisionError, setDecisionError] = useState("");
   const [busy, setBusy] = useState(false);
+  const selectedIdRef = useRef(selectedId);
+  const pendingRead = useRef<AbortController | null>(null);
+  selectedIdRef.current = selectedId;
 
   const refresh = useCallback(async () => {
+    if (selectedIdRef.current !== selectedId) return;
+    pendingRead.current?.abort();
+    const controller = new AbortController();
+    pendingRead.current = controller;
     try {
       const [listResponse, detailResponse] = await Promise.all([
-        fetch(`${api}/documents`, { cache: "no-store" }),
-        fetch(`${api}/documents/${selectedId}`, { cache: "no-store" }),
+        fetch(`${api}/documents`, { cache: "no-store", signal: controller.signal }),
+        fetch(`${api}/documents/${selectedId}`, { cache: "no-store", signal: controller.signal }),
       ]);
       if (!listResponse.ok || !detailResponse.ok) throw new Error("Review API is unavailable");
-      setDocuments(await listResponse.json());
-      setDetail(await detailResponse.json());
+      const [list, nextDetail] = await Promise.all([listResponse.json(), detailResponse.json()]);
+      if (controller.signal.aborted || selectedIdRef.current !== selectedId) return;
+      setDocuments(list);
+      setDetail(nextDetail);
+      setLoadError("");
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Could not load documents");
+      if (controller.signal.aborted || selectedIdRef.current !== selectedId) return;
+      setLoadError(cause instanceof Error ? cause.message : "Could not load documents");
     }
   }, [selectedId]);
 
   useEffect(() => {
     void refresh();
     const timer = window.setInterval(() => void refresh(), 3000);
-    return () => window.clearInterval(timer);
+    return () => { window.clearInterval(timer); pendingRead.current?.abort(); };
   }, [refresh]);
 
   async function decide(proposal: Proposal, decision: "approve" | "reject") {
-    if (!actor.trim()) { setError("Enter your name before deciding."); return; }
+    if (!actor.trim()) { setDecisionError("Enter your name before deciding."); return; }
+    const decidingDocument = proposal.document_id;
     setBusy(true);
+    setDecisionError("");
     try {
       const response = await fetch(`${api}/proposals/${proposal.id}/decision`, {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -54,16 +68,17 @@ export default function Page() {
         const problem = await response.json();
         throw new Error(problem.detail || "Decision failed");
       }
-      setError("");
+      setDecisionError("");
       await refresh();
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Decision failed");
+      if (selectedIdRef.current === decidingDocument) setDecisionError(cause instanceof Error ? cause.message : "Decision failed");
       await refresh();
     } finally {
       setBusy(false);
     }
   }
 
+  const error = decisionError || loadError;
   const pending = detail?.proposals.filter((proposal) => proposal.status === "pending") || [];
   const decided = detail?.proposals.filter((proposal) => proposal.status !== "pending") || [];
   const sectionName = (id: string) => detail?.document.sections.find((section) => section.id === id)?.heading || id;
@@ -83,7 +98,7 @@ export default function Page() {
         <div className="document-list">
           {documents.map((item) => <button key={item.id}
             className={`document-item ${selectedId === item.id ? "selected" : ""}`}
-            onClick={() => { setSelectedId(item.id); setDetail(null); setError(""); }}>
+            onClick={() => { selectedIdRef.current = item.id; setSelectedId(item.id); setDetail(null); setDecisionError(""); setLoadError(""); }}>
             <span>{item.id.toUpperCase()}</span><strong>{item.title}</strong><small>Revision {item.revision}</small>
           </button>)}
         </div>
@@ -112,14 +127,14 @@ export default function Page() {
       <aside className="review-panel">
         <div className="review-head"><div className="eyebrow">REVIEW QUEUE</div><h2>Proposed edits</h2>
           <p>Compare the suggestion with the document, then record your decision.</p>
-          <label htmlFor="actor">Your name</label><input id="actor" value={actor}
-            onChange={(event) => { setActor(event.target.value); setError(""); }} placeholder="Reviewer name" /></div>
+          <label htmlFor="actor">Your name</label><input id="actor" value={actor} maxLength={100}
+            onChange={(event) => { setActor(event.target.value); setDecisionError(""); }} placeholder="Reviewer name" /></div>
         <div className="proposal-list">
           {pending.length === 0 && <p className="quiet">No edits waiting for approval. Ask the copilot to review a section.</p>}
           {pending.map((proposal) => <div className="proposal" key={proposal.id}>
             <div className="proposal-top"><span>{sectionName(proposal.section_id)}</span><span>AWAITING REVIEW</span></div>
             <p className="reason">{proposal.reason}</p>
-            <div className="comparison"><div><small>CURRENT</small><p>{proposal.original_text}</p></div>
+            <div className="comparison"><div><small>SOURCE WHEN PROPOSED</small><p>{proposal.original_text}</p></div>
               <div><small>PROPOSED</small><p>{proposal.replacement_text}</p></div></div>
             <div className="actions"><button className="secondary" disabled={busy} onClick={() => void decide(proposal, "reject")}>Reject</button>
               <button className="primary" disabled={busy} onClick={() => void decide(proposal, "approve")}>Approve edit</button></div>
@@ -130,7 +145,7 @@ export default function Page() {
         </div>
         <div className="copilot-panel"><div className="copilot-header"><div className="eyebrow">ASSISTANT</div>
           <h2>Review copilot</h2><p>Ask for a narrow edit. It can prepare proposals but cannot apply them.</p></div>
-          <div className="chat-wrap"><CopilotChat agentId="review_agent" className="chat" /></div></div>
+          <div className="chat-wrap"><ReviewChat /></div></div>
       </aside>
     </div>
   </main>;

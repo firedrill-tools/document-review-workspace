@@ -5,6 +5,7 @@ from __future__ import annotations
 from contextlib import contextmanager
 import fcntl
 import json
+import hashlib
 import os
 import uuid
 import time
@@ -33,14 +34,17 @@ class Workspace:
         self.lock = Lock()
         self._read()
 
-    def _read(self) -> dict:
+    def snapshot(self):
         with self.path.open("rb") as source:
             raw = source.read(MAX_STATE_BYTES + 1)
         if len(raw) > MAX_STATE_BYTES:
             raise ValueError("workspace exceeds 4 MiB")
         data = json.loads(raw)
         WorkspaceData.model_validate(data)
-        return data
+        return {"file_sha256": hashlib.sha256(raw).hexdigest(), "state": data}
+
+    def _read(self) -> dict:
+        return self.snapshot()["state"]
 
     @contextmanager
     def _locked(self):
@@ -72,7 +76,9 @@ class Workspace:
                 os.close(descriptor)
             self.lock.release()
 
-    def _write(self, data: dict) -> None:
+    def _write(self, data: dict, commit_guard=None) -> None:
+        if commit_guard:
+            commit_guard()
         WorkspaceData.model_validate(data)
         raw = (json.dumps(data, indent=2) + "\n").encode("utf-8")
         if len(raw) > MAX_STATE_BYTES:
@@ -89,6 +95,8 @@ class Workspace:
                 stream.write(raw)
                 stream.flush()
                 os.fsync(stream.fileno())
+            if commit_guard:
+                commit_guard()
             os.replace(temporary, self.path)
         finally:
             if temporary is not None:
@@ -129,8 +137,24 @@ class Workspace:
         }
 
     def propose(
-        self, document_id: str, section_id: str, replacement_text: str, reason: str
+        self,
+        document_id: str,
+        section_id: str,
+        replacement_text: str,
+        reason: str,
+        *,
+        expected_section=None,
+        run_id=None,
+        commit_guard=None,
     ) -> dict:
+        if run_id is not None:
+            identifier(run_id, "run ID")
+            if expected_section is None or commit_guard is None:
+                raise ValueError(
+                    "model proposal requires an owned source read and commit guard"
+                )
+        if commit_guard:
+            commit_guard()
         identifier(document_id, "document ID")
         identifier(section_id, "section ID")
         bounded(replacement_text, "replacement text", 20000)
@@ -139,10 +163,33 @@ class Workspace:
             data = self._read()
             document = self._document(data, document_id)
             section = self._section(document, section_id)
+            if (
+                expected_section is not None
+                and {key: section[key] for key in ("text", "revision", "locked")}
+                != expected_section
+            ):
+                raise Conflict(
+                    "section changed since this run read it; read the current source again"
+                )
             if section["locked"]:
                 raise Conflict("section is protected from edits")
             if replacement_text.strip() == section["text"]:
                 raise ValueError("replacement must differ from current text")
+            for existing in data["proposals"]:
+                if existing["status"] == "pending" and all(
+                    existing[key] == value
+                    for key, value in {
+                        "document_id": document_id,
+                        "section_id": section_id,
+                        "original_text": section["text"],
+                        "base_section_revision": section["revision"],
+                        "replacement_text": replacement_text.strip(),
+                        "reason": reason.strip(),
+                    }.items()
+                ):
+                    if commit_guard:
+                        commit_guard()
+                    return {**existing, "proposal_replayed": True}
             proposal = {
                 "id": str(uuid.uuid4()),
                 "document_id": document_id,
@@ -154,10 +201,12 @@ class Workspace:
                 "revision": 1,
                 "status": "pending",
                 "decision_actor": None,
+                "origin": "model_proposal" if run_id else "human_import",
+                "created_by_run": run_id,
             }
             data["proposals"].append(proposal)
-            self._write(data)
-            return proposal
+            self._write(data, commit_guard)
+            return {**proposal, "proposal_replayed": False}
 
     def decide(
         self, proposal_id: str, revision: int, decision: str, actor: str

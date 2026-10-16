@@ -80,11 +80,19 @@ class Proposal(StrictModel):
     revision: int = Field(ge=1, le=2)
     status: Literal["pending", "approved", "rejected"]
     decision_actor: str | None
+    origin: Literal["legacy_unknown", "human_import", "model_proposal"] = (
+        "legacy_unknown"
+    )
+    created_by_run: str | None = None
 
     @model_validator(mode="after")
     def valid(self):
         for value in (self.id, self.document_id, self.section_id):
             identifier(value)
+        if self.origin == "model_proposal":
+            identifier(self.created_by_run, "creating run ID")
+        elif self.created_by_run is not None:
+            raise ValueError("non-model history cannot claim a model run")
         bounded(self.original_text, "original text", 20000)
         bounded(self.replacement_text, "replacement text", 20000)
         bounded(self.reason, "reason", 2000)

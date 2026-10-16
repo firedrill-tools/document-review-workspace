@@ -13,3 +13,7 @@ workspace.json.lock
 .workspace.json.*.tmp
 backend/dist/
 .runs/
+frontend/.e2e/
+frontend/test-results/
+frontend/playwright-report/
+.review-runs/
