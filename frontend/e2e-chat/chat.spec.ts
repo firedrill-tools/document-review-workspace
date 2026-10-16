@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { test, expect } from "@playwright/test";
 import { copyFileSync, readdirSync, readFileSync, renameSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
@@ -85,5 +86,55 @@ test("late document reads cannot replace the selection, and successful reload cl
   await page.getByRole("button", { name: /Incident response handbook/ }).click();
   await expect(page.locator(".document-main [role=alert]")).toContainText("Review API is unavailable");
   await expect(page.getByRole("heading", { name: "Incident response handbook", exact: true })).toBeVisible({ timeout: 8000 });
+  await expect(page.locator(".document-main [role=alert]")).toHaveCount(0);
+});
+
+function initialize(caseId: string) {
+  const reset = resolve(".e2e/reset.json");
+  rmSync(reset, { force: true });
+  execFileSync(resolve("../backend/.venv/bin/python"), ["-m", "document_review.api", "--init-case", caseId, "--workspace", reset]);
+  renameSync(reset, file);
+}
+
+test("busy human queue is searchable and one approval preserves every unrelated record", async ({ page }, testInfo) => {
+  initialize("busy");
+  const before = state();
+  await page.goto("/");
+  await page.getByLabel("Find document").fill("doc-113");
+  await page.getByRole("button", { name: /DOC-113/ }).click();
+  await expect(page.getByRole("heading", { name: "Quality review exercise 13", exact: true })).toBeVisible();
+  await page.getByLabel("Your name").fill("Avery");
+  await page.getByRole("button", { name: "Approve edit" }).click();
+  await expect(page.getByText("approved by Avery")).toBeVisible();
+  const after = state();
+  expect(after.documents.filter((doc: { id: string }) => doc.id !== "doc-113")).toEqual(before.documents.filter((doc: { id: string }) => doc.id !== "doc-113"));
+  expect(after.proposals.filter((item: { status: string }) => item.status === "approved")).toHaveLength(13);
+  expect(after.proposals).toHaveLength(30);
+  const changed = after.proposals.find((item: { decision_actor: string }) => item.decision_actor === "Avery");
+  expect(after.proposals.filter((item: { id: string }) => item.id !== changed.id)).toEqual(before.proposals.filter((item: { id: string }) => item.id !== changed.id));
+  await page.screenshot({ path: testInfo.outputPath("busy-queue-approved.png"), fullPage: true });
+});
+
+test("stale pending edit cannot be approved and explicit rejection preserves the current source", async ({ page }) => {
+  initialize("stale-competing-edit");
+  const before = state().documents;
+  await page.goto("/");
+  await expect(page.locator(".proposal-warning")).toContainText("Section changed");
+  await expect(page.getByRole("button", { name: "Approve edit" })).toBeDisabled();
+  await page.getByLabel("Your name").fill("Avery");
+  await page.getByRole("button", { name: "Reject", exact: true }).click();
+  await expect(page.getByText("rejected by Avery")).toBeVisible();
+  expect(state().documents).toEqual(before);
+  expect(state().proposals.map((item: { status: string }) => item.status).sort()).toEqual(["approved", "rejected"]);
+});
+
+test("noncontiguous document IDs choose a real library entry without a hardcoded default", async ({ page }) => {
+  initialize("noncontiguous-ids");
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "Incident response handbook", exact: true })).toBeVisible();
+  await expect(page.locator(".document-heading")).toContainText("DOC-905");
+  await page.getByRole("button", { name: /DOC-444/ }).click();
+  await expect(page.getByRole("heading", { name: "Customer update template", exact: true })).toBeVisible();
+  await expect(page.locator(".document-heading")).toContainText("DOC-444");
   await expect(page.locator(".document-main [role=alert]")).toHaveCount(0);
 });

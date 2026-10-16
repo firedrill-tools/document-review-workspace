@@ -1,0 +1,75 @@
+{
+  "documents": [
+    {
+      "id": "doc-101",
+      "title": "Incident response handbook",
+      "revision": 9007199254740991,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The operations team records each service incident in the shared log. The incident commander coordinates response and customer updates.",
+          "revision": 9007199254740991,
+          "locked": false
+        },
+        {
+          "id": "acknowledgement",
+          "heading": "Acknowledgement",
+          "text": "A Sev 2 incident should be acknowledged within 60 minutes. The on-call engineer posts the first status update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "escalation",
+          "heading": "Escalation",
+          "text": "If the on-call engineer cannot respond, the incident commander takes ownership and records the handoff in the incident log.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Legal notice",
+          "text": "This synthetic handbook is for demonstration only and does not replace an organization's incident policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-102",
+      "title": "Customer update template",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "opening",
+          "heading": "Opening",
+          "text": "We are investigating a service interruption and will provide another update when we have verified details.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "detail",
+          "heading": "Known details",
+          "text": "List confirmed affected services and the time the issue began. Do not speculate about the root cause.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "signoff",
+          "heading": "Sign-off",
+          "text": "The incident commander approves the final customer-facing update.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    }
+  ],
+  "proposals": [],
+  "synthetic": true,
+  "dataset": {
+    "id": "synthetic-document-review",
+    "version": 1,
+    "profile": "boundary",
+    "case_id": "revision-limit"
+  }
+}

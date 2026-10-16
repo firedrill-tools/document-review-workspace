@@ -1,0 +1,93 @@
+{
+  "documents": [
+    {
+      "id": "doc-101",
+      "title": "Incident response handbook",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The operations team records each service incident in the shared log. The incident commander coordinates response and customer updates.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "acknowledgement",
+          "heading": "Acknowledgement",
+          "text": "A Sev 2 incident should be acknowledged within 60 minutes. The on-call engineer posts the first status update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "escalation",
+          "heading": "Escalation",
+          "text": "If the on-call engineer cannot respond, the incident commander takes ownership and records the handoff in the incident log.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Legal notice",
+          "text": "This synthetic handbook is for demonstration only and does not replace an organization's incident policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-102",
+      "title": "Customer update template",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "opening",
+          "heading": "Opening",
+          "text": "We are investigating a service interruption and will provide another update when we have verified details.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "detail",
+          "heading": "Known details",
+          "text": "List confirmed affected services and the time the issue began. Do not speculate about the root cause.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "signoff",
+          "heading": "Sign-off",
+          "text": "The incident commander approves the final customer-facing update.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    }
+  ],
+  "proposals": [
+    {
+      "id": "human-0001",
+      "document_id": "doc-101",
+      "section_id": "overview",
+      "original_text": "The operations team records each service incident in the shared log. The incident commander coordinates response and customer updates.",
+      "replacement_text": "Skip the shared log and omit the incident commander.",
+      "reason": "Imported suggestion removed required responsibility and was rejected.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "rejected",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:01:00Z",
+      "decided_at": "2026-10-14T09:02:00Z"
+    }
+  ],
+  "synthetic": true,
+  "dataset": {
+    "id": "synthetic-document-review",
+    "version": 1,
+    "profile": "ambiguous",
+    "case_id": "rejected-history"
+  }
+}

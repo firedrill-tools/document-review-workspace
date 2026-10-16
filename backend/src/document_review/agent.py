@@ -121,6 +121,7 @@ def build_agent(workspace, *, model, checkpointer):
                 reason,
                 expected_section=expected,
                 run_id=run.run_id,
+                thread_id=run.thread_id,
                 commit_guard=run.guard,
             )
         except (KeyError, ValueError, Conflict) as error:

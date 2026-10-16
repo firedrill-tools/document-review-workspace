@@ -17,3 +17,4 @@ frontend/.e2e/
 frontend/test-results/
 frontend/playwright-report/
 .review-runs/
+dist/

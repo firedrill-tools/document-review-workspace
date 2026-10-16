@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from contextlib import contextmanager
 import fcntl
 import json
@@ -15,6 +16,7 @@ from threading import Lock
 
 from .contracts import (
     MAX_STATE_BYTES,
+    SAFE_INTEGER,
     WorkspaceData,
     bounded,
     identifier,
@@ -145,10 +147,12 @@ class Workspace:
         *,
         expected_section=None,
         run_id=None,
+        thread_id=None,
         commit_guard=None,
     ) -> dict:
         if run_id is not None:
             identifier(run_id, "run ID")
+            identifier(thread_id, "thread ID")
             if expected_section is None or commit_guard is None:
                 raise ValueError(
                     "model proposal requires an owned source read and commit guard"
@@ -203,6 +207,9 @@ class Workspace:
                 "decision_actor": None,
                 "origin": "model_proposal" if run_id else "human_import",
                 "created_by_run": run_id,
+                "created_by_thread": thread_id,
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "decided_at": None,
             }
             data["proposals"].append(proposal)
             self._write(data, commit_guard)
@@ -228,6 +235,13 @@ class Workspace:
             document = self._document(data, proposal["document_id"])
             section = self._section(document, proposal["section_id"])
             if decision == "approve":
+                if (
+                    document["revision"] >= SAFE_INTEGER
+                    or section["revision"] >= SAFE_INTEGER
+                ):
+                    raise Conflict(
+                        "revision limit reached; this document cannot accept another edit"
+                    )
                 if section["locked"]:
                     raise Conflict("section is protected from edits")
                 if section["revision"] != proposal["base_section_revision"] or (
@@ -244,5 +258,6 @@ class Workspace:
                 proposal["status"] = "rejected"
             proposal["revision"] += 1
             proposal["decision_actor"] = actor.strip()
+            proposal["decided_at"] = datetime.now(timezone.utc).isoformat()
             self._write(data)
             return {"proposal": proposal, "document": document}

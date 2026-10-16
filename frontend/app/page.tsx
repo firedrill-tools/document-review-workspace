@@ -16,6 +16,7 @@ const api = process.env.NEXT_PUBLIC_REVIEW_API_URL || "http://localhost:8124";
 
 export default function Page() {
   const [documents, setDocuments] = useState<DocumentSummary[]>([]);
+  const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState("doc-101");
   const [detail, setDetail] = useState<Detail | null>(null);
   const [actor, setActor] = useState("");
@@ -36,10 +37,21 @@ export default function Page() {
         fetch(`${api}/documents`, { cache: "no-store", signal: controller.signal }),
         fetch(`${api}/documents/${selectedId}`, { cache: "no-store", signal: controller.signal }),
       ]);
-      if (!listResponse.ok || !detailResponse.ok) throw new Error("Review API is unavailable");
-      const [list, nextDetail] = await Promise.all([listResponse.json(), detailResponse.json()]);
+      if (!listResponse.ok) throw new Error("Review API is unavailable");
+      const list: DocumentSummary[] = await listResponse.json();
       if (controller.signal.aborted || selectedIdRef.current !== selectedId) return;
       setDocuments(list);
+      if (!list.some(item => item.id === selectedId)) {
+        if (!list.length) throw new Error("No documents are available");
+        selectedIdRef.current = list[0].id;
+        setSelectedId(list[0].id);
+        setDetail(null);
+        setLoadError("");
+        return;
+      }
+      if (!detailResponse.ok) throw new Error("Review API is unavailable");
+      const nextDetail: Detail = await detailResponse.json();
+      if (controller.signal.aborted || selectedIdRef.current !== selectedId) return;
       setDetail(nextDetail);
       setLoadError("");
     } catch (cause) {
@@ -81,6 +93,14 @@ export default function Page() {
   const error = decisionError || loadError;
   const pending = detail?.proposals.filter((proposal) => proposal.status === "pending") || [];
   const decided = detail?.proposals.filter((proposal) => proposal.status !== "pending") || [];
+  const visibleDocuments = documents.filter(item => `${item.id} ${item.title}`.toLowerCase().includes(query.trim().toLowerCase()));
+  const approvalProblem = (proposal: Proposal) => {
+    const section = detail?.document.sections.find(item => item.id === proposal.section_id);
+    if (!section || section.revision !== proposal.base_section_revision || section.text !== proposal.original_text) return "Section changed. Read the current document and request a fresh proposal, or reject this one.";
+    if (section.locked) return "This section is protected. You can reject the proposal.";
+    if (section.revision >= Number.MAX_SAFE_INTEGER || (detail?.document.revision ?? 0) >= Number.MAX_SAFE_INTEGER) return "This document has reached its revision limit. You can reject the proposal.";
+    return "";
+  };
   const sectionName = (id: string) => detail?.document.sections.find((section) => section.id === id)?.heading || id;
 
   return <main className="app-shell">
@@ -95,8 +115,10 @@ export default function Page() {
         <div className="eyebrow">LIBRARY <span>{String(documents.length).padStart(2, "0")}</span></div>
         <h1>Documents</h1>
         <p className="rail-intro">Select a draft to inspect its committed sections and proposed edits.</p>
+        <label className="document-search">Find document<input value={query} onChange={event => setQuery(event.target.value)} placeholder="Title or document ID" /></label>
         <div className="document-list">
-          {documents.map((item) => <button key={item.id}
+          {visibleDocuments.length === 0 && <p className="quiet">No documents match your search.</p>}
+          {visibleDocuments.map((item) => <button key={item.id}
             className={`document-item ${selectedId === item.id ? "selected" : ""}`}
             onClick={() => { selectedIdRef.current = item.id; setSelectedId(item.id); setDetail(null); setDecisionError(""); setLoadError(""); }}>
             <span>{item.id.toUpperCase()}</span><strong>{item.title}</strong><small>Revision {item.revision}</small>
@@ -134,10 +156,11 @@ export default function Page() {
           {pending.map((proposal) => <div className="proposal" key={proposal.id}>
             <div className="proposal-top"><span>{sectionName(proposal.section_id)}</span><span>AWAITING REVIEW</span></div>
             <p className="reason">{proposal.reason}</p>
+            {approvalProblem(proposal) && <p className="proposal-warning" role="status">{approvalProblem(proposal)}</p>}
             <div className="comparison"><div><small>SOURCE WHEN PROPOSED</small><p>{proposal.original_text}</p></div>
               <div><small>PROPOSED</small><p>{proposal.replacement_text}</p></div></div>
             <div className="actions"><button className="secondary" disabled={busy} onClick={() => void decide(proposal, "reject")}>Reject</button>
-              <button className="primary" disabled={busy} onClick={() => void decide(proposal, "approve")}>Approve edit</button></div>
+              <button className="primary" disabled={busy || Boolean(approvalProblem(proposal))} onClick={() => void decide(proposal, "approve")}>Approve edit</button></div>
           </div>)}
           {decided.length > 0 && <div className="history"><div className="eyebrow">DECISIONS</div>
             {decided.map((proposal) => <div className="history-item" key={proposal.id}>

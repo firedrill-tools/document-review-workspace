@@ -1,5 +1,6 @@
 """Strict bounded synthetic document and proposal state."""
 
+from datetime import datetime, timedelta
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -84,6 +85,9 @@ class Proposal(StrictModel):
         "legacy_unknown"
     )
     created_by_run: str | None = None
+    created_by_thread: str | None = None
+    created_at: str | None = Field(default=None, max_length=40)
+    decided_at: str | None = Field(default=None, max_length=40)
 
     @model_validator(mode="after")
     def valid(self):
@@ -91,8 +95,28 @@ class Proposal(StrictModel):
             identifier(value)
         if self.origin == "model_proposal":
             identifier(self.created_by_run, "creating run ID")
-        elif self.created_by_run is not None:
+            if self.created_by_thread is not None:
+                identifier(self.created_by_thread, "creating thread ID")
+        elif self.created_by_run is not None or self.created_by_thread is not None:
             raise ValueError("non-model history cannot claim a model run")
+        timestamps = {}
+        for name in ("created_at", "decided_at"):
+            value = getattr(self, name)
+            if value is not None:
+                parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+                if (
+                    "T" not in value
+                    or parsed.tzinfo is None
+                    or parsed.utcoffset() != timedelta(0)
+                ):
+                    raise ValueError(
+                        "proposal timestamps must be explicit UTC ISO datetimes"
+                    )
+                timestamps[name] = parsed
+        if self.status == "pending" and self.decided_at is not None:
+            raise ValueError("pending proposal cannot claim a decision timestamp")
+        if len(timestamps) == 2 and timestamps["decided_at"] < timestamps["created_at"]:
+            raise ValueError("decision precedes proposal creation")
         bounded(self.original_text, "original text", 20000)
         bounded(self.replacement_text, "replacement text", 20000)
         bounded(self.reason, "reason", 2000)
@@ -108,7 +132,21 @@ class Proposal(StrictModel):
         return self
 
 
+class DatasetIdentity(StrictModel):
+    id: Literal["synthetic-document-review"]
+    version: int = Field(ge=1, le=1)
+    profile: Literal["starter", "busy", "ambiguous", "boundary"]
+    case_id: str
+
+    @model_validator(mode="after")
+    def valid(self):
+        identifier(self.case_id, "case ID")
+        return self
+
+
 class WorkspaceData(StrictModel):
+    synthetic: bool | None = None
+    dataset: DatasetIdentity | None = None
     documents: list[Document] = Field(min_length=1, max_length=100)
     proposals: list[Proposal] = Field(max_length=1000)
 
@@ -119,6 +157,13 @@ class WorkspaceData(StrictModel):
             raise ValueError("duplicate document ID")
         if len({proposal.id for proposal in self.proposals}) != len(self.proposals):
             raise ValueError("duplicate proposal ID")
+        if (
+            self.synthetic not in (None, True)
+            or self.dataset is not None
+            and self.synthetic is not True
+        ):
+            raise ValueError("declared datasets must explicitly be synthetic")
+        approved = set()
         for proposal in self.proposals:
             document = documents.get(proposal.document_id)
             section = (
@@ -137,6 +182,27 @@ class WorkspaceData(StrictModel):
                 raise ValueError(
                     "proposal refers to an unknown or impossible section state"
                 )
+            if proposal.status == "approved":
+                consumed = (
+                    proposal.document_id,
+                    proposal.section_id,
+                    proposal.base_section_revision,
+                )
+                if (
+                    consumed in approved
+                    or proposal.base_section_revision >= section.revision
+                ):
+                    raise ValueError(
+                        "approved history has conflicting section revisions"
+                    )
+                approved.add(consumed)
+                if (
+                    proposal.base_section_revision + 1 == section.revision
+                    and proposal.replacement_text != section.text
+                ):
+                    raise ValueError(
+                        "latest approved history differs from committed text"
+                    )
         return self
 
 

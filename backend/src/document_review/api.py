@@ -152,12 +152,58 @@ def create_app(
     return app
 
 
-def main():
-    import uvicorn
+def main(argv=None):
+    import argparse
+    import sys
+    from .datasets import initialize_case, list_cases
 
-    path = Path(os.getenv("DOCUMENT_WORKSPACE_FILE", "../workspace.json"))
-    uvicorn.run(create_app(path), host="127.0.0.1", port=8124)
+    parser = argparse.ArgumentParser(
+        description="Synthetic document review API and private offline cases"
+    )
+    action = parser.add_mutually_exclusive_group()
+    action.add_argument("--list-cases", action="store_true")
+    action.add_argument("--init-case", metavar="CASE")
+    action.add_argument("--show", action="store_true")
+    parser.add_argument("--workspace", type=Path)
+    parser.add_argument(
+        "--without-agent",
+        action="store_true",
+        help="model-free document inspection/operator decisions",
+    )
+    parser.add_argument("--port", type=int, default=8124)
+    args = parser.parse_args(argv)
+    if not 1 <= args.port <= 65535:
+        parser.error("port must be 1–65535")
+    if args.init_case and args.workspace is None:
+        parser.error("--init-case requires a fresh --workspace path")
+    path = args.workspace or Path(
+        os.getenv("DOCUMENT_WORKSPACE_FILE", "../workspace.json")
+    )
+    try:
+        if args.list_cases:
+            result = list_cases()
+        elif args.init_case:
+            result = initialize_case(args.init_case, args.workspace)
+        elif args.show:
+            result = Workspace(path).snapshot()
+        else:
+            import uvicorn
+
+            uvicorn.run(
+                create_app(path, include_agent=not args.without_agent),
+                host="127.0.0.1",
+                port=args.port,
+            )
+            return 0
+        print(json.dumps(result, indent=2, allow_nan=False))
+        return 0
+    except (ValueError, OSError, KeyError) as error:
+        print(
+            json.dumps({"error": type(error).__name__, "message": str(error)}),
+            file=sys.stderr,
+        )
+        return 1
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

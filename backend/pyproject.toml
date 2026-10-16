@@ -4,7 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "document-review-backend"
-version = "0.1.0"
+version = "0.2.0"
+readme = "README.md"
 description = "CopilotKit document review workspace with approval-gated edits"
 requires-python = ">=3.12"
 dependencies = ["langchain==1.4.6", "langchain-core==1.6.10", "langchain-anthropic==1.7.6", "anthropic==1.14.0", "httpx2==2.13.1", "langgraph==1.2.15", "langsmith==0.14.9", "pydantic==2.14.1", "copilotkit==0.1.96", "ag-ui-langgraph==0.0.47", "fastapi==0.143.2", "uvicorn==0.54.0"]
@@ -20,3 +21,9 @@ packages = ["src/document_review"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"data" = "document_review/sample_data"
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "data", "fixtures", "scripts", "tests", "README.md", "AGENTS.md", "pyproject.toml", "uv.lock"]

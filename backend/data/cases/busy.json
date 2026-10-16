@@ -1,0 +1,1363 @@
+{
+  "documents": [
+    {
+      "id": "doc-101",
+      "title": "Incident response handbook",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The operations team records each service incident in the shared log. The incident commander coordinates response and customer updates. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "acknowledgement",
+          "heading": "Acknowledgement",
+          "text": "A Sev 2 incident should be acknowledged within 60 minutes. The on-call engineer posts the first status update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "escalation",
+          "heading": "Escalation",
+          "text": "If the on-call engineer cannot respond, the incident commander takes ownership and records the handoff in the incident log.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Legal notice",
+          "text": "This synthetic handbook is for demonstration only and does not replace an organization's incident policy.",
+          "revision": 1,
+          "locked": true
+        },
+        {
+          "id": "notes-5",
+          "heading": "Exercise note 5",
+          "text": "The incident response handbook is reviewed in a synthetic exercise before use.",
+          "revision": 1,
+          "locked": false
+        }
+      ]
+    },
+    {
+      "id": "doc-102",
+      "title": "Customer update template",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "opening",
+          "heading": "Opening",
+          "text": "We are investigating a service interruption and will provide another update when we have verified details. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "detail",
+          "heading": "Known details",
+          "text": "List confirmed affected services and the time the issue began. Do not speculate about the root cause.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "signoff",
+          "heading": "Sign-off",
+          "text": "The incident commander approves the final customer-facing update.",
+          "revision": 1,
+          "locked": true
+        },
+        {
+          "id": "notes-4",
+          "heading": "Exercise note 4",
+          "text": "The customer update template is reviewed in a synthetic exercise before use.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "notes-5",
+          "heading": "Exercise note 5",
+          "text": "The customer update template is reviewed in a synthetic exercise before use.",
+          "revision": 1,
+          "locked": false
+        }
+      ]
+    },
+    {
+      "id": "doc-103",
+      "title": "Service desk exercise 03",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The service desk group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 03. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-104",
+      "title": "Facilities exercise 04",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The facilities group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 04. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-105",
+      "title": "Data platform exercise 05",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The data platform group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 05. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-106",
+      "title": "Customer operations exercise 06",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The customer operations group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 06. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-107",
+      "title": "Quality review exercise 07",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The quality review group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 07. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-108",
+      "title": "Release team exercise 08",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The release team group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 08. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-109",
+      "title": "Service desk exercise 09",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The service desk group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 09. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-110",
+      "title": "Facilities exercise 10",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The facilities group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 10. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-111",
+      "title": "Data platform exercise 11",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The data platform group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 11. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-112",
+      "title": "Customer operations exercise 12",
+      "revision": 2,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The customer operations group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 12. The reviewer confirms that the handoff is recorded.",
+          "revision": 2,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-113",
+      "title": "Quality review exercise 13",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The quality review group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 13.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-114",
+      "title": "Release team exercise 14",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The release team group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 14.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-115",
+      "title": "Service desk exercise 15",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The service desk group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 15.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-116",
+      "title": "Facilities exercise 16",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The facilities group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 16.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-117",
+      "title": "Data platform exercise 17",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The data platform group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 17.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-118",
+      "title": "Customer operations exercise 18",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The customer operations group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 18.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-119",
+      "title": "Quality review exercise 19",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The quality review group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 19.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    },
+    {
+      "id": "doc-120",
+      "title": "Release team exercise 20",
+      "revision": 1,
+      "sections": [
+        {
+          "id": "overview",
+          "heading": "Overview",
+          "text": "The release team group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 20.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "ownership",
+          "heading": "Ownership",
+          "text": "The exercise lead checks the assigned owner and records the review decision.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "handoff",
+          "heading": "Handoff",
+          "text": "The current owner gives the receiving team the confirmed context and open questions.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "customer-update",
+          "heading": "Customer update",
+          "text": "Share only verified exercise facts. Explain uncertainty before suggesting another update.",
+          "revision": 1,
+          "locked": false
+        },
+        {
+          "id": "legal",
+          "heading": "Protected notice",
+          "text": "This fictional exercise guide does not replace an organization policy.",
+          "revision": 1,
+          "locked": true
+        }
+      ]
+    }
+  ],
+  "proposals": [
+    {
+      "id": "human-0001",
+      "document_id": "doc-101",
+      "section_id": "overview",
+      "original_text": "The operations team records each service incident in the shared log. The incident commander coordinates response and customer updates.",
+      "replacement_text": "The operations team records each service incident in the shared log. The incident commander coordinates response and customer updates. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:01:00Z",
+      "decided_at": "2026-10-14T09:02:00Z"
+    },
+    {
+      "id": "human-0002",
+      "document_id": "doc-102",
+      "section_id": "opening",
+      "original_text": "We are investigating a service interruption and will provide another update when we have verified details.",
+      "replacement_text": "We are investigating a service interruption and will provide another update when we have verified details. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:02:00Z",
+      "decided_at": "2026-10-14T09:03:00Z"
+    },
+    {
+      "id": "human-0003",
+      "document_id": "doc-103",
+      "section_id": "overview",
+      "original_text": "The service desk group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 03.",
+      "replacement_text": "The service desk group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 03. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:03:00Z",
+      "decided_at": "2026-10-14T09:04:00Z"
+    },
+    {
+      "id": "human-0004",
+      "document_id": "doc-104",
+      "section_id": "overview",
+      "original_text": "The facilities group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 04.",
+      "replacement_text": "The facilities group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 04. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:04:00Z",
+      "decided_at": "2026-10-14T09:05:00Z"
+    },
+    {
+      "id": "human-0005",
+      "document_id": "doc-105",
+      "section_id": "overview",
+      "original_text": "The data platform group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 05.",
+      "replacement_text": "The data platform group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 05. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:05:00Z",
+      "decided_at": "2026-10-14T09:06:00Z"
+    },
+    {
+      "id": "human-0006",
+      "document_id": "doc-106",
+      "section_id": "overview",
+      "original_text": "The customer operations group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 06.",
+      "replacement_text": "The customer operations group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 06. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:06:00Z",
+      "decided_at": "2026-10-14T09:07:00Z"
+    },
+    {
+      "id": "human-0007",
+      "document_id": "doc-107",
+      "section_id": "overview",
+      "original_text": "The quality review group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 07.",
+      "replacement_text": "The quality review group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 07. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:07:00Z",
+      "decided_at": "2026-10-14T09:08:00Z"
+    },
+    {
+      "id": "human-0008",
+      "document_id": "doc-108",
+      "section_id": "overview",
+      "original_text": "The release team group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 08.",
+      "replacement_text": "The release team group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 08. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:08:00Z",
+      "decided_at": "2026-10-14T09:09:00Z"
+    },
+    {
+      "id": "human-0009",
+      "document_id": "doc-109",
+      "section_id": "overview",
+      "original_text": "The service desk group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 09.",
+      "replacement_text": "The service desk group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 09. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:09:00Z",
+      "decided_at": "2026-10-14T09:10:00Z"
+    },
+    {
+      "id": "human-0010",
+      "document_id": "doc-110",
+      "section_id": "overview",
+      "original_text": "The facilities group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 10.",
+      "replacement_text": "The facilities group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 10. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:10:00Z",
+      "decided_at": "2026-10-14T09:11:00Z"
+    },
+    {
+      "id": "human-0011",
+      "document_id": "doc-111",
+      "section_id": "overview",
+      "original_text": "The data platform group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 11.",
+      "replacement_text": "The data platform group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 11. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:11:00Z",
+      "decided_at": "2026-10-14T09:12:00Z"
+    },
+    {
+      "id": "human-0012",
+      "document_id": "doc-112",
+      "section_id": "overview",
+      "original_text": "The customer operations group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 12.",
+      "replacement_text": "The customer operations group records verified exercise findings in the shared log and assigns an owner before the handoff for exercise 12. The reviewer confirms that the handoff is recorded.",
+      "reason": "Human exercise review clarified the closing responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "approved",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:12:00Z",
+      "decided_at": "2026-10-14T09:13:00Z"
+    },
+    {
+      "id": "human-0013",
+      "document_id": "doc-105",
+      "section_id": "ownership",
+      "original_text": "The exercise lead checks the assigned owner and records the review decision.",
+      "replacement_text": "Remove the owner check and skip the review record.",
+      "reason": "Imported suggestion rejected because it removes responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "rejected",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:13:00Z",
+      "decided_at": "2026-10-14T09:14:00Z"
+    },
+    {
+      "id": "human-0014",
+      "document_id": "doc-106",
+      "section_id": "ownership",
+      "original_text": "The exercise lead checks the assigned owner and records the review decision.",
+      "replacement_text": "Remove the owner check and skip the review record.",
+      "reason": "Imported suggestion rejected because it removes responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "rejected",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:14:00Z",
+      "decided_at": "2026-10-14T09:15:00Z"
+    },
+    {
+      "id": "human-0015",
+      "document_id": "doc-107",
+      "section_id": "ownership",
+      "original_text": "The exercise lead checks the assigned owner and records the review decision.",
+      "replacement_text": "Remove the owner check and skip the review record.",
+      "reason": "Imported suggestion rejected because it removes responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "rejected",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:15:00Z",
+      "decided_at": "2026-10-14T09:16:00Z"
+    },
+    {
+      "id": "human-0016",
+      "document_id": "doc-108",
+      "section_id": "ownership",
+      "original_text": "The exercise lead checks the assigned owner and records the review decision.",
+      "replacement_text": "Remove the owner check and skip the review record.",
+      "reason": "Imported suggestion rejected because it removes responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "rejected",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:16:00Z",
+      "decided_at": "2026-10-14T09:17:00Z"
+    },
+    {
+      "id": "human-0017",
+      "document_id": "doc-109",
+      "section_id": "ownership",
+      "original_text": "The exercise lead checks the assigned owner and records the review decision.",
+      "replacement_text": "Remove the owner check and skip the review record.",
+      "reason": "Imported suggestion rejected because it removes responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "rejected",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:17:00Z",
+      "decided_at": "2026-10-14T09:18:00Z"
+    },
+    {
+      "id": "human-0018",
+      "document_id": "doc-110",
+      "section_id": "ownership",
+      "original_text": "The exercise lead checks the assigned owner and records the review decision.",
+      "replacement_text": "Remove the owner check and skip the review record.",
+      "reason": "Imported suggestion rejected because it removes responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "rejected",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:18:00Z",
+      "decided_at": "2026-10-14T09:19:00Z"
+    },
+    {
+      "id": "human-0019",
+      "document_id": "doc-111",
+      "section_id": "ownership",
+      "original_text": "The exercise lead checks the assigned owner and records the review decision.",
+      "replacement_text": "Remove the owner check and skip the review record.",
+      "reason": "Imported suggestion rejected because it removes responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "rejected",
+      "decision_actor": "Avery Chen",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:19:00Z",
+      "decided_at": "2026-10-14T09:20:00Z"
+    },
+    {
+      "id": "human-0020",
+      "document_id": "doc-112",
+      "section_id": "ownership",
+      "original_text": "The exercise lead checks the assigned owner and records the review decision.",
+      "replacement_text": "Remove the owner check and skip the review record.",
+      "reason": "Imported suggestion rejected because it removes responsibility.",
+      "base_section_revision": 1,
+      "revision": 2,
+      "status": "rejected",
+      "decision_actor": "Mira Cole",
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:20:00Z",
+      "decided_at": "2026-10-14T09:21:00Z"
+    },
+    {
+      "id": "human-0021",
+      "document_id": "doc-111",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:21:00Z",
+      "decided_at": null
+    },
+    {
+      "id": "human-0022",
+      "document_id": "doc-112",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:22:00Z",
+      "decided_at": null
+    },
+    {
+      "id": "human-0023",
+      "document_id": "doc-113",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:23:00Z",
+      "decided_at": null
+    },
+    {
+      "id": "human-0024",
+      "document_id": "doc-114",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:24:00Z",
+      "decided_at": null
+    },
+    {
+      "id": "human-0025",
+      "document_id": "doc-115",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:25:00Z",
+      "decided_at": null
+    },
+    {
+      "id": "human-0026",
+      "document_id": "doc-116",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:26:00Z",
+      "decided_at": null
+    },
+    {
+      "id": "human-0027",
+      "document_id": "doc-117",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:27:00Z",
+      "decided_at": null
+    },
+    {
+      "id": "human-0028",
+      "document_id": "doc-118",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:28:00Z",
+      "decided_at": null
+    },
+    {
+      "id": "human-0029",
+      "document_id": "doc-119",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:29:00Z",
+      "decided_at": null
+    },
+    {
+      "id": "human-0030",
+      "document_id": "doc-120",
+      "section_id": "handoff",
+      "original_text": "The current owner gives the receiving team the confirmed context and open questions.",
+      "replacement_text": "The current owner gives the receiving team the confirmed context and open questions. Include the next checkpoint.",
+      "reason": "Human suggestion awaits review of the additional checkpoint.",
+      "base_section_revision": 1,
+      "revision": 1,
+      "status": "pending",
+      "decision_actor": null,
+      "origin": "human_import",
+      "created_by_run": null,
+      "created_by_thread": null,
+      "created_at": "2026-10-14T09:30:00Z",
+      "decided_at": null
+    }
+  ],
+  "synthetic": true,
+  "dataset": {
+    "id": "synthetic-document-review",
+    "version": 1,
+    "profile": "busy",
+    "case_id": "busy"
+  }
+}

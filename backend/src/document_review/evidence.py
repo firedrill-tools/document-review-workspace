@@ -252,6 +252,7 @@ class RunScope:
                 for proposal in final["state"]["proposals"]
                 if proposal["id"] not in before
                 and proposal.get("created_by_run") == self.run_id
+                and proposal.get("created_by_thread") == self.thread_id
             ]
             self.data["actual_effects"] = {
                 "created_proposal_ids": created,
