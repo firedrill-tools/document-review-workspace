@@ -8,3 +8,8 @@ frontend/tsconfig.tsbuildinfo
 workspace.json
 workspace.json.tmp
 .env
+
+workspace.json.lock
+.workspace.json.*.tmp
+backend/dist/
+.runs/
