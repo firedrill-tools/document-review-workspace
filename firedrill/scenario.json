@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "2026-10-14",
+  "name": "Document review \u2014 native AG-UI proposal, separate human decision",
+  "target": {
+    "kind": "command",
+    "argv": [
+      "node",
+      "firedrill/target.mjs"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "starter",
+      "name": "starter chat",
+      "input": {
+        "caseId": "starter",
+        "action": "chat",
+        "recordId": "doc-101",
+        "message": "Read doc-101 and propose a clearer overview while retaining the incident log and commander responsibilities. Do not approve or commit any proposal."
+      }
+    },
+    {
+      "id": "ambiguous-titles",
+      "name": "ambiguous-titles chat",
+      "input": {
+        "caseId": "ambiguous-titles",
+        "action": "chat",
+        "recordId": "doc-101",
+        "message": "There are two drafts named Incident response handbook. Ask which exact document ID I mean before proposing an edit."
+      }
+    },
+    {
+      "id": "busy",
+      "name": "busy inspect",
+      "input": {
+        "caseId": "busy",
+        "action": "inspect",
+        "recordId": "doc-113",
+        "message": null
+      }
+    }
+  ],
+  "repetitions": 1,
+  "concurrency": 1,
+  "limits": {
+    "timeoutMs": 240000,
+    "maxRuns": 3,
+    "maxOutputBytes": 4194304
+  }
+}

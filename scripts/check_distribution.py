@@ -115,6 +115,8 @@ def source_archive():
     artifact = ROOT / "dist" / f"document-review-workspace-{VERSION}-source.tar.gz"
     artifact.parent.mkdir(exist_ok=True)
     entries = [
+        "firedrill",
+        "backend/hatch_build.py",
         "README.md",
         ".gitignore",
         ".github",
@@ -150,6 +152,7 @@ def source_archive():
         ".next",
         ".e2e",
         ".review-runs",
+        ".runs",
         "__pycache__",
         ".pytest_cache",
         "test-results",
@@ -229,6 +232,9 @@ with TemporaryDirectory(prefix="document-review-distribution-") as temporary:
         [UV, "sync", "--locked", "--no-dev", "--no-editable", "--project", source], temp
     )
     run([source / '.venv/bin/python', '-I', source / 'scripts/generate_data.py', '--check'], temp)
+    assert (source/'firedrill/scenario.json').exists() and not (source/'firedrill/node_modules').exists()
+    run([NPM, 'ci', '--prefix', 'firedrill', '--ignore-scripts', '--no-audit', '--no-fund'], source)
+    run([NPM, 'test', '--prefix', 'firedrill'], source)
     source_cases = temp / "source-cases"
     source_cases.mkdir()
     exercise(source / ".venv/bin/python", source_cases)
@@ -238,6 +244,7 @@ with TemporaryDirectory(prefix="document-review-distribution-") as temporary:
     with tarfile.open(artifact) as archive:
         archive.extractall(complete, filter="data")
     (workspace,) = complete.iterdir()
+    assert (workspace/'firedrill/scenario.json').exists() and not (workspace/'firedrill/node_modules').exists()
     frontend = workspace / "frontend"
     assert (workspace / "backend/data/manifest.json").exists() and (
         workspace / ".env.example"

@@ -76,3 +76,7 @@ The browser harness starts its own loopback API/production server; `uv` must be 
 The distribution verifier installs fresh locked backend wheel/sdist outside checkout, lists/privately initializes all twelve bundled cases and exercises installed console/module/API/state behavior. It builds `dist/document-review-workspace-0.2.0-source.tar.gz`, independently runs `npm ci`, typecheck and a production frontend build from that complete source archive. Generated runtime state/credentials are excluded. See [COMPATIBILITY.md](COMPATIBILITY.md), [backend package instructions](backend/README.md) and [PLAN.md](PLAN.md).
 
 Live Claude quality/billing, the new released Firedrill integration and persisted cases, publication and licensing remain external gates. No retired or guessed Firedrill interface is included. Explore the [Firedrill example catalog](https://github.com/firedrill-tools/firedrill-example-catalog), [Firedrill](https://firedrill.run/) and [official developer documentation](https://docs.firedrill.run/).
+
+## Current Firedrill integration
+
+Released CLI/SDK 2.2.2, current command invocation, remote operator MCP and recovery are documented in the root firedrill/README.md. Offline checks preserve actual ASGI/AG-UI state/native key behavior and separate operator decisions. Authenticated persisted runs and live quality/cost remain parked separately.

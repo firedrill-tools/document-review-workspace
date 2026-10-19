@@ -18,3 +18,6 @@ frontend/test-results/
 frontend/playwright-report/
 .review-runs/
 dist/
+
+node_modules/
+.runs/
