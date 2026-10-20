@@ -2,6 +2,8 @@
 
 A standalone synthetic [CopilotKit](https://docs.copilotkit.ai/) workspace with a Claude/LangChain agent. The agent reads documents and saves source-bound proposals for one section at a time. A named operator compares the original and proposed text, then approves or rejects. Only approval changes the committed document; the browser follows that state. This app has no production document connector.
 
+This example repository is publicly viewable. A project license has not been selected.
+
 ## Simulate with Firedrill
 
 [Firedrill](https://firedrill.run/) is a simulation platform for AI agents.
@@ -89,7 +91,7 @@ The browser harness starts its own loopback API/production server; `uv` must be 
 
 The distribution verifier installs fresh locked backend wheel/sdist outside checkout, lists/privately initializes all twelve bundled cases and exercises installed console/module/API/state behavior. It builds `dist/document-review-workspace-0.2.0-source.tar.gz`, independently runs `npm ci`, typecheck and a production frontend build from that complete source archive. Generated runtime state/credentials are excluded. See [COMPATIBILITY.md](COMPATIBILITY.md), [backend package instructions](backend/README.md) and [PLAN.md](PLAN.md).
 
-Live Claude quality/billing, authenticated persisted Firedrill cases, publication and licensing remain external gates. No retired or guessed Firedrill interface is included. Explore the [Firedrill example catalog](https://github.com/firedrill-tools/firedrill-example-catalog), [Firedrill](https://firedrill.run/) and [official developer documentation](https://docs.firedrill.run/).
+Live Claude quality/billing, authenticated persisted Firedrill cases, and licensing remain external gates. No retired or guessed Firedrill interface is included. Explore the [Firedrill example catalog](https://github.com/firedrill-tools/firedrill-example-catalog), [Firedrill](https://firedrill.run/) and [official developer documentation](https://docs.firedrill.run/).
 
 ## Current Firedrill integration
 
